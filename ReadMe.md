@@ -27,9 +27,14 @@ tensorbaoard:0.4.0rc3
  
 ## 三.运行
 1.运行生成模型  
-    python3 train.py  
+```
+python3 train.py
+```
 2.生成图片  
-    python3 test_iamge_generator.py  
+```
+python3 test_iamge_generator.py
+```
 3.对图片进行识别  
-    python3 track.py  
-
+```
+python3 track.py  
+```

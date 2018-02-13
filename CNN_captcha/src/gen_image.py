@@ -1,7 +1,6 @@
 from captcha.image import ImageCaptcha
 import numpy as np
 import matplotlib.pyplot as plt
-# from config import NUMBER, CHAR_SMALL, CHAR_BIG, MAX_CAPTCHA, CHAR_SET_LEN, FONT_SIZE
 import src.config as config
 from PIL import Image
 import random
@@ -12,33 +11,37 @@ number_dict = {}
 
 # 生成随机的指定的字符串
 def __gen_random_captcha_text(char_set=config.VALIDATE_STRING, size=None):
-    # char_set must be a str
+    # 验证是否为字符串
     if not char_set or not isinstance(char_set, str):
         raise ValueError('get the empty char_set')
 
-    # 随机
+    #random生成随机字符串
     result = list(char_set)
     random.shuffle(result)
 
     # 返回字符串
     return ''.join(result[0:size])
 
-
+#随机生成验证码图像
 def gen_random_captcha_image():
+    #定义图片大小
     image = ImageCaptcha(width=config.IMAGE_WIDTH, height=config.IMAGE_HEIGHT,font_sizes=[config.FONT_SIZE])
-
+    #获取随机生成的字符串
     text = __gen_random_captcha_text(size=config.MAX_CAPTCHA)
+    #将字符串加入图片
     captcha = image.generate(text)
     captcha_image = Image.open(captcha)
+    #生成验证码源
     captcha_source = np.array(captcha_image)
     return text, captcha_source
 
 
-# always gen the require image height ,and width image
+# 检查生成的图像宽度,高度是否符合预设值
 def gen_require_captcha_image():
-    while 1:
+    while True:
         text, image = gen_random_captcha_image()
         if image.shape == (config.IMAGE_HEIGHT, config.IMAGE_WIDTH, 3):
+            #返回字符串,图片
             return text, image
 
 
@@ -54,7 +57,7 @@ def convert2gray(img):
         return img
 
 
-# prepare the char to index
+#准备字符串索引
 def prepare_char_dict():
     if char_dict:
         return char_dict
@@ -64,7 +67,7 @@ def prepare_char_dict():
 
     return char_dict
 
-
+#准备数字索引
 def prepare_number_dict():
     if number_dict:
         return number_dict
@@ -74,7 +77,7 @@ def prepare_number_dict():
 
     return number_dict
 
-
+#文本转向量
 def text_to_array(text):
     char_dict_tmp = prepare_char_dict()
 
@@ -86,7 +89,7 @@ def text_to_array(text):
 
     return arr
 
-
+#向量转文本
 def array_to_text(arr):
     num_dict_tmp = prepare_number_dict()
     text = []
@@ -98,6 +101,7 @@ def array_to_text(arr):
         text.append(num_dict_tmp[key_index])
     return ''.join(text)
 
+#显示图片信息
 def show_image_text():
     text, image = gen_random_captcha_image()
 
@@ -108,10 +112,19 @@ def show_image_text():
 
     plt.show()
 
-#
+def creat_image():
+    image = ImageCaptcha(width=160, height=60, font_sizes=[35])
+    # 获取随机生成的字符串
+    text = __gen_random_captcha_text(size=config.MAX_CAPTCHA)
+    # 将字符串加入图片
+
+    image.write(text,"../1.png")
+#单元测试模块
 if __name__ == '__main__':
     # __do_image_text()
     # arr = text_to_array('0142')
     # print '==========='
     # print array_to_text(arr)
-    show_image_text()
+    #show_image_text()
+    #prepare_number_dict()
+    creat_image()

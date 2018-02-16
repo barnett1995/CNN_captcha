@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Material Design风格用户注册登录界面设计|DEMO_jQuery之家-自由分享jQuery、html5、css3的插件库</title>
+	<link rel="stylesheet" type="text/css" href="css/default.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/css/materialize.min.css">
+	<style type="text/css">
+	html,
+	body {
+	    height: 100%;
+	}
+	html {
+	    display: table;
+	    margin: auto;
+	}
+	body {
+	    display: table-cell;
+	    vertical-align: middle;
+	}
+
+	.margin {
+	  margin: 0 !important;
+	}
+	</style>
+	    <script type="text/javascript">
+    function imgPreview(fileDom){
+        //判断是否支持FileReader
+        if (window.FileReader) {
+            var reader = new FileReader();
+        } else {
+            alert("您的设备不支持图片预览功能，如需该功能请升级您的设备！");
+        }
+
+        //获取文件
+        var file = fileDom.files[0];
+        var imageType = /^image\//;
+        //是否是图片
+        if (!imageType.test(file.type)) {
+            alert("请选择图片！");
+            return;
+        }
+        //读取完成
+        reader.onload = function(e) {
+            //获取图片dom
+            var img = document.getElementById("preview");
+            //图片路径设置为读取的图片
+            img.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+    }
+</script>
+</head>
+<body class="red">
+	<div id="login-page" class="row">
+	    <div class="col s12 z-depth-6 card-panel">
+	      <form class="login-form" action="/index/" method="post" enctype="multipart/form-data">
+	        <div class="row">
+	          <div class="input-field col s12 center">
+	            <img id="preview"/>
+
+	          </div>
+	        </div>
+	        <div class="row margin">
+	          <div class="input-field col s12">
+	            <input type="file" name="file" class="validate" onchange="imgPreview(this)" />
+
+
+	          </div>
+	        </div>
+	        <div class="row margin">
+	          <div class="input-field col s12">
+
+
+	            <label >{{value}}</label>
+	          </div>
+	        </div>
+
+	        <div class="row">
+	          <div class="input-field col s12">
+				  <input  class="btn waves-effect waves-light col s12" type="submit" value="upload"/>
+
+	          </div>
+	        </div>
+
+
+	      </form>
+	    </div>
+	  </div>
+
+
+	<script src="js/jquery-2.1.1.min.js"></script>
+  	<!--materialize js-->
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/js/materialize.min.js"></script>
+</body>
+</html>

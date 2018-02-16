@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/CNN_captcha.iml" filepath="$PROJECT_DIR$/.idea/CNN_captcha.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/gen_captcha.iml" filepath="$PROJECT_DIR$/.idea/gen_captcha.iml" />
     </modules>
   </component>
 </project>

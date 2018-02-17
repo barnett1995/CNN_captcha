@@ -1,8 +1,8 @@
 import tensorflow as tf
 import numpy as np
 from PIL import Image
-from crack.src.gen_model import create_layer,convert2gray
-from crack.src.config import MAX_CAPTCHA, CHAR_SET_LEN, VALIDATE_STRING,IMAGE_HEIGHT,IMAGE_WIDTH
+from gen_model import create_layer,convert2gray
+from config import MAX_CAPTCHA, CHAR_SET_LEN, VALIDATE_STRING,IMAGE_HEIGHT,IMAGE_WIDTH
 
 
 keep_prob=tf.placeholder(tf.float32)
@@ -15,7 +15,7 @@ def crick_test(path):
     with tf.Session() as sess:
         saver=tf.train.Saver()
         #ckpt=tf.train.get_checkpoint_state("./model/break.cpkt-31700")
-        saver.restore(sess,"./model/break.ckpt-31700")
+        saver.restore(sess, "/tmp/model/break.ckpt-33600")
         captcha_image = Image.open(path)
         captcha_source = np.array(captcha_image)
         image = convert2gray(captcha_source)
@@ -25,6 +25,10 @@ def crick_test(path):
         result=[]
         for i in range(MAX_CAPTCHA):
             result.append(VALIDATE_STRING[rst[MAX_CAPTCHA-(MAX_CAPTCHA-i)]])
-        #print(result)
-    return (result)
+        print(result)
+    #return (result)
+
+if __name__ == '__main__':
+    path ="/home/gxm/Documents/Git/CNN/gen_captcha/Image/1.png"
+    crick_test(path)
 

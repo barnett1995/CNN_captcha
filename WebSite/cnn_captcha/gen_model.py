@@ -1,8 +1,7 @@
 import tensorflow as tf
 import numpy as np
-from src.gen_image import text_to_array
-from src.config import MAX_CAPTCHA, CHAR_SET_LEN, IMAGE_HEIGHT, IMAGE_WIDTH, MAX_ACCURACY
-from src.gen_image import gen_require_captcha_image
+from cnn_captcha.gen_image import text_to_array, gen_require_captcha_image
+from cnn_captcha.config import MAX_CAPTCHA, CHAR_SET_LEN, IMAGE_HEIGHT, IMAGE_WIDTH, MAX_ACCURACY
 
 #申请占位符号
 x_input = tf.placeholder(tf.float32, [None, IMAGE_HEIGHT * IMAGE_WIDTH])
@@ -145,7 +144,7 @@ def train():
         #tf.summary_merge_all()管理所有TensorBoard的summary
         merged = tf.summary.merge_all()
         #tf,summary.FileWriter()将TensorBoard数据保存
-        writer = tf.summary.FileWriter('F:\cnn_logs', sess.graph)
+        writer = tf.summary.FileWriter('cnn_logs', sess.graph)
         tf.global_variables_initializer().run()
         #初始化正确率为0
         acc = 0.0

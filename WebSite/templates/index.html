@@ -25,7 +25,7 @@
 	  margin: 0 !important;
 	}
 	</style>
-	    <script type="text/javascript">
+	<script type="text/javascript">
     function imgPreview(fileDom){
         //判断是否支持FileReader
         if (window.FileReader) {
@@ -51,7 +51,23 @@
         };
         reader.readAsDataURL(file);
     }
-</script>
+	</script>
+	<script src="./js/jquery-3.1.1.js "></script>
+	<script type="text/javascript">
+
+		$(document).ready(function(){               //元素加载完成之后，绑定事件
+			$("button").click(function(){       //给按钮的点击效果，绑定一个事件
+				var id=document.getElementById('name').value //获取输入框的值
+				$.ajax({                    //调用ajax
+				url:" url "index" ",  //发出请求的地址
+				data:{name:file},
+				success:function(result){$("#ask").html(result);}
+						// 服务器成功响应后，绑定的事件
+				});
+			});
+		});
+
+ </script>
 </head>
 <body class="red">
 	<div id="login-page" class="row">
@@ -63,25 +79,30 @@
 
 	          </div>
 	        </div>
-	        <div class="row margin">
+	        <div class="row margin" >
 	          <div class="input-field col s12">
-	            <input type="file" name="file" class="validate" onchange="imgPreview(this)" />
+	            <input type="file" name="file" id="file" class="validate" onchange="imgPreview(this)" />
 
 
 	          </div>
 	        </div>
-	        <div class="row margin">
-	          <div class="input-field col s12">
+	        <div >
+				<p>
+				<p>
+				&nbsp <h5>识别结果:
+				{% for item in data%}
+					{{ item }}
+				{% endfor %}
+			    </h5>
 
 
-	            <label >{{value}}</label>
-	          </div>
+
 	        </div>
 
 	        <div class="row">
 	          <div class="input-field col s12">
-				  <input  class="btn waves-effect waves-light col s12" type="submit" value="upload"/>
 
+					<button class="btn waves-effect waves-light col s12">识别</button>
 	          </div>
 	        </div>
 

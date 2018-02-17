@@ -1,7 +1,7 @@
 from captcha.image import ImageCaptcha
 import numpy as np
 import matplotlib.pyplot as plt
-import src.config as config
+import cnn_captcha.config as config
 from PIL import Image
 import random
 

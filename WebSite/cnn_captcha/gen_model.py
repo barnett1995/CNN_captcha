@@ -136,6 +136,7 @@ def train():
     #TensorBoard统计正确率
     tf.summary.scalar('accuracy', accuracy)
     global_step_tensor=tf.Variable(0,trainable="Flase",name="global_step")
+    #此函数是Adam优化算法：是一个寻找全局最优点的优化算法，引入了二次方梯度校正。
     train_step = tf.train.AdamOptimizer(learning_rate=0.001).minimize(loss,global_step=global_step_tensor)
     #保存模型
     saver = tf.train.Saver()

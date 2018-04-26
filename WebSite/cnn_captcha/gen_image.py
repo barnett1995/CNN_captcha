@@ -86,7 +86,6 @@ def text_to_array(text):
         key_index = char_dict_tmp[p]
         index = i * config.CHAR_SET_LEN + key_index
         arr[index] = 1
-
     return arr
 
 #向量转文本
